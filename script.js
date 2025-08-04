@@ -31,12 +31,10 @@ async function loadEntries() {
     if (!response.ok) throw new Error('Failed to fetch entries');
     const data = await response.json();
 
-    // Clear current table
     tableBody.innerHTML = '';
 
     data.forEach(entry => {
-      // Use 'id' field if present, fallback to _id or timestamp
-      const rowId = entry.id || entry._id || generateUniqueId();
+      const rowId = entry.id || generateUniqueId();
       addRow(entry.date, entry.branch, entry.product, entry.quantity, rowId);
     });
   } catch (error) {
@@ -62,8 +60,7 @@ function addRow(date, branch, product, quantity, rowId) {
     if (!confirm('Are you sure you want to delete this entry?')) return;
 
     try {
-      // Delete by filtering with id column
-      const deleteUrl = `${SCRIPT_URL}?id=${encodeURIComponent(rowId)}`;
+      const deleteUrl = `${SCRIPT_URL}/id/${encodeURIComponent(rowId)}`;
       const res = await fetch(deleteUrl, { method: 'DELETE' });
 
       if (res.ok) {
@@ -88,7 +85,7 @@ function showToast(message) {
   }, 3000);
 }
 
-// Handle form submit
+// Handle form submission
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
@@ -121,16 +118,14 @@ form.addEventListener('submit', async (e) => {
       body: JSON.stringify(postData)
     });
 
-    const result = await response.json();
-
     if (response.ok) {
       addRow(date, branch, product, quantity, uniqueId);
-
       form.reset();
       productOther.style.display = 'none';
       productOther.required = false;
       showToast('✔ Entry added successfully!');
     } else {
+      const result = await response.json();
       alert('Failed to save data: ' + (result.message || 'Unknown error'));
     }
   } catch (error) {
@@ -142,14 +137,17 @@ form.addEventListener('submit', async (e) => {
 // Download table as PDF
 function downloadPDF() {
   const element = document.getElementById('table-container');
-  html2pdf().from(element).set({
-    margin: 0.5,
+
+  const opt = {
+    margin: [0.5, 0.5, 0.5, 0.5],
     filename: 'Health_Stock_Report.pdf',
     image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2 },
-    jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
-  }).save();
+    html2canvas: { scale: 2, scrollY: 0 },
+    jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
+  };
+
+  html2pdf().set(opt).from(element).save();
 }
 
-// Initial load
+// Load entries initially
 loadEntries();
