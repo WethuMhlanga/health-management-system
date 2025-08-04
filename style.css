@@ -1,0 +1,277 @@
+:root {
+  --primary-color: #0d6efd;
+  --secondary-color: #6c757d;
+  --bg-color: #f8f9fa;
+  --text-color: #212529;
+  --toast-bg-color: #198754;
+  --toast-text-color: white;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+h1, h2 {
+  text-align: center;
+  color: var(--primary-color);
+  margin: 0.5rem 0 1rem;
+}
+
+form {
+  margin-top: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+button {
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #084298;
+  outline: none;
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+  width: auto;
+  padding: 8px 16px;
+  margin-top: 1rem;
+  display: inline-block;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: #5a6268;
+  outline: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 14px;
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+thead {
+  background-color: var(--primary-color);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+th, td {
+  border: 1px solid #dee2e6;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  font-weight: 700;
+}
+
+td {
+  vertical-align: middle;
+}
+
+.btn-delete {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover,
+.btn-delete:focus {
+  background-color: #a71d2a;
+  outline: none;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--toast-bg-color);
+  color: var(--toast-text-color);
+  padding: 10px 20px;
+  border-radius: 6px;
+  display: none;
+  z-index: 1000;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+/* Fade-section initial opacity for scroll effect */
+.fade-section {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+/* Responsive Table */
+@media (max-width: 600px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+  }
+
+  td {
+    border: none;
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+  }
+
+  td::before {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    width: 45%;
+    white-space: nowrap;
+    font-weight: 700;
+    content: attr(data-label);
+  }
+
+  /* Make the delete button full width in mobile for easy tap */
+  .btn-delete {
+    width: 100%;
+    padding: 10px 0;
+  }
+}
+
+/* Your original styles... */
+
+.btn-delete {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+  background-color: #a71d2a;
+}
+
+
+/* Navigation styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e3a8a;
+  color: white;
+  padding: 10px 20px;
+}
+
+.nav-logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive iframe container */
+.iframe-container {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+  padding: 10px;
+}
+
+.iframe-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}

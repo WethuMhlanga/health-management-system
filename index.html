@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Health Stock Management</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-logo">🩺 Health Stock</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="spreadsheet.html" target="_blank">Spreadsheet</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>🩺 Health Stock Management</h1>
+
+    <form id="stock-form">
+      <div class="form-group">
+        <label for="date">📅 Date</label>
+        <input type="date" id="date" required />
+      </div>
+
+      <div class="form-group">
+        <label for="branch">🏥 Branch</label>
+        <select id="branch" required>
+          <option value="">Select Branch</option>
+          <option value="Malelane">Malelane</option>
+          <option value="Komatipoort">Komatipoort</option>
+          <option value="Nelspruit">Nelspruit</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="product-select">📦 Product</label>
+        <select id="product-select" required>
+          <option value="Syringes">Syringes</option>
+            <option value="Gloves">Gloves</option>
+            <option value="Bandages">Bandages</option>
+            <option value="IV Bags">IV Bags</option>
+            <option value="Face Masks">Face Masks</option>
+            <option value="Sanitizers">Sanitizers</option>
+            <option value="Thermometers">Thermometers</option>
+            <option value="Stethoscopes">Stethoscopes</option>
+            <option value="BP Monitors">BP Monitors</option>
+            <option value="Surgical Blades">Surgical Blades</option>
+            <option value="Scalpels">Scalpels</option>
+            <option value="Sutures">Sutures</option>
+            <option value="Cannulas">Cannulas</option>
+            <option value="Needles">Needles</option>
+            <option value="Drip Stands">Drip Stands</option>
+            <option value="Specimen Containers">Specimen Containers</option>
+            <option value="Urine Bags">Urine Bags</option>
+            <option value="Catheters">Catheters</option>
+            <option value="Oxygen Masks">Oxygen Masks</option>
+            <option value="Pulse Oximeters">Pulse Oximeters</option>
+            <option value="Wheelchairs">Wheelchairs</option>
+            <option value="Hospital Beds">Hospital Beds</option>
+            <option value="Disinfectant Wipes">Disinfectant Wipes</option>
+            <option value="Gauze">Gauze</option>
+            <option value="Plasters">Plasters</option>
+            <option value="Thermal Blankets">Thermal Blankets</option>
+            <option value="IV Cannulas">IV Cannulas</option>
+            <option value="ECG Machines">ECG Machines</option>
+            <option value="Defibrillators">Defibrillators</option>
+            <option value="Surgical Gowns">Surgical Gowns</option>
+            <option value="Surgical Caps">Surgical Caps</option>
+            <option value="Shoe Covers">Shoe Covers</option>
+            <option value="Medical Tapes">Medical Tapes</option>
+            <option value="Antibiotic Ointments">Antibiotic Ointments</option>
+            <option value="Ointments and Creams">Ointments and Creams</option>
+            <option value="Eye Drops">Eye Drops</option>
+            <option value="Alcohol Swabs">Alcohol Swabs</option>
+            <option value="Other">Other</option>
+        </select>
+        <input type="text" id="product-other" placeholder="Custom Product" style="display: none;" />
+      </div>
+
+      <div class="form-group">
+        <label for="quantity">🔢 Quantity</label>
+        <input type="number" id="quantity" placeholder="Enter Quantity" min="1" required />
+      </div>
+
+      <button type="submit" class="btn-primary">➕ Add Entry</button>
+    </form>
+
+    <div class="toast" id="toast" role="alert" style="display:none;">✔ Entry added successfully!</div>
+
+    <div id="table-container">
+      <h2>📊 Stock Entries</h2>
+      <table id="stock-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Branch</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rows dynamically added here -->
+        </tbody>
+      </table>
+      <button class="btn-secondary" onclick="downloadPDF()">⬇ Download PDF</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
