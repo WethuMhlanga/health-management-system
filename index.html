@@ -39,7 +39,6 @@
       <div class="form-group">
         <label for="product-select">📦 Product</label>
         <select id="product-select" required>
-          <!-- Product options -->
           <option value="Syringes">Syringes</option>
           <option value="Gloves">Gloves</option>
           <option value="Bandages">Bandages</option>
@@ -104,11 +103,14 @@
             <th>Action</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          <!-- Dynamic entries -->
+        </tbody>
       </table>
-      <!-- <button class="btn-secondary" onclick="downloadPDF()">⬇ Download PDF</button> -->
+      <button class="btn-secondary" onclick="downloadPDF()">⬇ Download PDF</button>
     </div>
   </div>
+
 
   <script>
     const form = document.getElementById('stock-form');
