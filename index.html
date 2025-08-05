@@ -8,7 +8,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
-    <!-- Navigation -->
+  <!-- Navigation -->
   <nav class="navbar">
     <div class="nav-logo">🩺 Health Stock</div>
     <ul class="nav-links">
@@ -39,44 +39,45 @@
       <div class="form-group">
         <label for="product-select">📦 Product</label>
         <select id="product-select" required>
+          <!-- Product options -->
           <option value="Syringes">Syringes</option>
-            <option value="Gloves">Gloves</option>
-            <option value="Bandages">Bandages</option>
-            <option value="IV Bags">IV Bags</option>
-            <option value="Face Masks">Face Masks</option>
-            <option value="Sanitizers">Sanitizers</option>
-            <option value="Thermometers">Thermometers</option>
-            <option value="Stethoscopes">Stethoscopes</option>
-            <option value="BP Monitors">BP Monitors</option>
-            <option value="Surgical Blades">Surgical Blades</option>
-            <option value="Scalpels">Scalpels</option>
-            <option value="Sutures">Sutures</option>
-            <option value="Cannulas">Cannulas</option>
-            <option value="Needles">Needles</option>
-            <option value="Drip Stands">Drip Stands</option>
-            <option value="Specimen Containers">Specimen Containers</option>
-            <option value="Urine Bags">Urine Bags</option>
-            <option value="Catheters">Catheters</option>
-            <option value="Oxygen Masks">Oxygen Masks</option>
-            <option value="Pulse Oximeters">Pulse Oximeters</option>
-            <option value="Wheelchairs">Wheelchairs</option>
-            <option value="Hospital Beds">Hospital Beds</option>
-            <option value="Disinfectant Wipes">Disinfectant Wipes</option>
-            <option value="Gauze">Gauze</option>
-            <option value="Plasters">Plasters</option>
-            <option value="Thermal Blankets">Thermal Blankets</option>
-            <option value="IV Cannulas">IV Cannulas</option>
-            <option value="ECG Machines">ECG Machines</option>
-            <option value="Defibrillators">Defibrillators</option>
-            <option value="Surgical Gowns">Surgical Gowns</option>
-            <option value="Surgical Caps">Surgical Caps</option>
-            <option value="Shoe Covers">Shoe Covers</option>
-            <option value="Medical Tapes">Medical Tapes</option>
-            <option value="Antibiotic Ointments">Antibiotic Ointments</option>
-            <option value="Ointments and Creams">Ointments and Creams</option>
-            <option value="Eye Drops">Eye Drops</option>
-            <option value="Alcohol Swabs">Alcohol Swabs</option>
-            <option value="Other">Other</option>
+          <option value="Gloves">Gloves</option>
+          <option value="Bandages">Bandages</option>
+          <option value="IV Bags">IV Bags</option>
+          <option value="Face Masks">Face Masks</option>
+          <option value="Sanitizers">Sanitizers</option>
+          <option value="Thermometers">Thermometers</option>
+          <option value="Stethoscopes">Stethoscopes</option>
+          <option value="BP Monitors">BP Monitors</option>
+          <option value="Surgical Blades">Surgical Blades</option>
+          <option value="Scalpels">Scalpels</option>
+          <option value="Sutures">Sutures</option>
+          <option value="Cannulas">Cannulas</option>
+          <option value="Needles">Needles</option>
+          <option value="Drip Stands">Drip Stands</option>
+          <option value="Specimen Containers">Specimen Containers</option>
+          <option value="Urine Bags">Urine Bags</option>
+          <option value="Catheters">Catheters</option>
+          <option value="Oxygen Masks">Oxygen Masks</option>
+          <option value="Pulse Oximeters">Pulse Oximeters</option>
+          <option value="Wheelchairs">Wheelchairs</option>
+          <option value="Hospital Beds">Hospital Beds</option>
+          <option value="Disinfectant Wipes">Disinfectant Wipes</option>
+          <option value="Gauze">Gauze</option>
+          <option value="Plasters">Plasters</option>
+          <option value="Thermal Blankets">Thermal Blankets</option>
+          <option value="IV Cannulas">IV Cannulas</option>
+          <option value="ECG Machines">ECG Machines</option>
+          <option value="Defibrillators">Defibrillators</option>
+          <option value="Surgical Gowns">Surgical Gowns</option>
+          <option value="Surgical Caps">Surgical Caps</option>
+          <option value="Shoe Covers">Shoe Covers</option>
+          <option value="Medical Tapes">Medical Tapes</option>
+          <option value="Antibiotic Ointments">Antibiotic Ointments</option>
+          <option value="Ointments and Creams">Ointments and Creams</option>
+          <option value="Eye Drops">Eye Drops</option>
+          <option value="Alcohol Swabs">Alcohol Swabs</option>
+          <option value="Other">Other</option>
         </select>
         <input type="text" id="product-other" placeholder="Custom Product" style="display: none;" />
       </div>
@@ -103,9 +104,7 @@
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>
-          <!-- Rows dynamically added here -->
-        </tbody>
+        <tbody></tbody>
       </table>
       <button class="btn-secondary" onclick="downloadPDF()">⬇ Download PDF</button>
     </div>
@@ -117,10 +116,9 @@
     const productSelect = document.getElementById('product-select');
     const productOther = document.getElementById('product-other');
     const toast = document.getElementById('toast');
-  
+
     const SCRIPT_URL = 'https://sheetdb.io/api/v1/vqe73unkshywj';
-  
-    // Toggle 'Other' product input
+
     productSelect.addEventListener('change', () => {
       if (productSelect.value === 'Other') {
         productOther.style.display = 'block';
@@ -131,46 +129,37 @@
         productOther.value = '';
       }
     });
-  
+
     function generateUniqueId() {
       return Date.now().toString();
     }
-  
-    async function loadEntries() {
-      try {
-        const response = await fetch(SCRIPT_URL);
-        const data = await response.json();
-        tableBody.innerHTML = '';
-  
-        data.forEach(entry => {
-          const rowId = entry.id || entry._id || generateUniqueId();
-          addRow(entry.date, entry.branch, entry.product, entry.quantity, rowId);
-        });
-      } catch (error) {
-        console.error(error);
-      }
+
+    function convertSerialToDate(serial) {
+      const excelEpoch = new Date(1899, 11, 30);
+      const days = parseFloat(serial);
+      if (isNaN(days)) return serial;
+      const ms = days * 86400000;
+      const date = new Date(excelEpoch.getTime() + ms);
+      return date.toISOString().split('T')[0];
     }
-  
+
     function addRow(date, branch, product, quantity, rowId) {
+      const cleanDate = /^\d+(\.\d+)?$/.test(date) ? convertSerialToDate(date) : date;
       const row = tableBody.insertRow();
-  
       row.innerHTML = `
-        <td data-label="Date">${date}</td>
-        <td data-label="Branch">${branch}</td>
-        <td data-label="Product">${product}</td>
-        <td data-label="Quantity">${quantity}</td>
-        <td data-label="Action"><button class="btn-delete" aria-label="Delete entry">🗑️ Delete</button></td>
+        <td>${cleanDate}</td>
+        <td>${branch}</td>
+        <td>${product}</td>
+        <td>${quantity}</td>
+        <td><button class="btn-delete">🗑️ Delete</button></td>
       `;
-  
       row.dataset.rowId = rowId;
-  
+
       row.querySelector('.btn-delete').addEventListener('click', async () => {
         if (!confirm('Are you sure you want to delete this entry?')) return;
-  
         try {
           const deleteUrl = `${SCRIPT_URL}/id/${encodeURIComponent(rowId)}`;
           const res = await fetch(deleteUrl, { method: 'DELETE' });
-  
           if (res.ok) {
             row.remove();
             showToast('🗑️ Entry deleted.');
@@ -183,7 +172,7 @@
         }
       });
     }
-  
+
     function showToast(message) {
       toast.innerText = message;
       toast.style.display = 'block';
@@ -191,22 +180,20 @@
         toast.style.display = 'none';
       }, 3000);
     }
-  
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-  
       const date = form.date.value;
       const branch = form.branch.value.trim();
       const quantity = form.quantity.value;
       const product = productSelect.value === 'Other' ? productOther.value.trim() : productSelect.value;
-  
+
       if (!date || !branch || !product || !quantity || quantity <= 0) {
         alert('Please fill in all fields with valid values.');
         return;
       }
-  
+
       const uniqueId = generateUniqueId();
-  
       const postData = {
         data: [{
           id: uniqueId,
@@ -216,14 +203,14 @@
           quantity
         }]
       };
-  
+
       try {
         const response = await fetch(SCRIPT_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(postData)
         });
-  
+
         if (response.ok) {
           addRow(date, branch, product, quantity, uniqueId);
           form.reset();
@@ -231,27 +218,42 @@
           productOther.required = false;
           showToast('✔ Entry added successfully!');
         } else {
-          alert('Failed to save data.');
+          const result = await response.json();
+          alert('Failed to save data: ' + (result.message || 'Unknown error'));
         }
       } catch (error) {
         console.error(error);
         alert('Error saving data.');
       }
     });
-  
+
+    async function loadEntries() {
+      try {
+        const response = await fetch(SCRIPT_URL);
+        if (!response.ok) throw new Error('Failed to fetch entries');
+        const data = await response.json();
+        tableBody.innerHTML = '';
+        data.forEach(entry => {
+          const rowId = entry.id || generateUniqueId();
+          addRow(entry.date, entry.branch, entry.product, entry.quantity, rowId);
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
     function downloadPDF() {
       const element = document.getElementById('table-container');
-      html2pdf().from(element).set({
-        margin: 0.5,
+      html2pdf().set({
+        margin: [0.5, 0.5, 0.5, 0.5],
         filename: 'Health_Stock_Report.pdf',
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
-      }).save();
+        html2canvas: { scale: 2, scrollY: 0 },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
+      }).from(element).save();
     }
-  
+
     loadEntries();
   </script>
-  
 </body>
 </html>
